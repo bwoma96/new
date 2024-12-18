@@ -1,4 +1,3 @@
-// app.js
 const express = require('express');
 const passport = require('passport');
 const session = require('express-session');
@@ -34,7 +33,6 @@ app.post('/login', passport.authenticate('local', {
     successRedirect: '/dashboard',
     failureRedirect: '/login',
     failureFlash: true
-
 }));
 
 app.get('/dashboard', checkAuthenticated, (req, res) => {
@@ -80,6 +78,5 @@ function checkAuthenticated(req, res, next) {
     res.redirect('/login');
 }
 
-app.listen(3000, () => {
-    console.log('Server started on http://localhost:3000');
-});
+// Export the app for Vercel serverless functions
+module.exports = app;
